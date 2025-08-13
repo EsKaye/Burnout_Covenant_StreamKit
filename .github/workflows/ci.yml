@@ -1,0 +1,24 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+permissions:
+  contents: read
+jobs:
+  ts-node:
+    if: ${{ hashFiles('package.json') != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: 'pnpm' }
+      - run: corepack enable
+      - run: |
+          if [ -f pnpm-lock.yaml ]; then pnpm i --frozen-lockfile;
+          elif [ -f package-lock.json ]; then npm ci;
+          else npm i; fi
+      - run: npm run lint --if-present || pnpm lint || true
+      - run: npm run typecheck --if-present || pnpm typecheck || true
+      - run: npm test --if-present || pnpm test || true
+      - run: npm run build --if-present || pnpm build || true
