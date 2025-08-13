@@ -1,0 +1,22 @@
+# Code owners for Burnout_Covenant_StreamKit
+# This file defines who is responsible for different parts of the codebase
+
+# Global owners
+* @EsKaye
+
+# TypeScript/JavaScript files
+*.ts @EsKaye
+*.tsx @EsKaye
+*.js @EsKaye
+*.jsx @EsKaye
+
+# Configuration files
+*.json @EsKaye
+*.config.* @EsKaye
+
+# Documentation
+*.md @EsKaye
+docs/ @EsKaye
+
+# GitHub workflows
+.github/ @EsKaye
