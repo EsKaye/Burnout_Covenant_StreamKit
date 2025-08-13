@@ -7,6 +7,7 @@ permissions:
   contents: read
 jobs:
   ts-node:
+    if: ${{ hashFiles('package.json') != '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
